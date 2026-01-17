@@ -245,20 +245,3 @@ wrangler d1 execute TEMP_MAIL_DB --command "SELECT * FROM mailboxes LIMIT 10"
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=li3112522-ops/mailfree&type=Date)](https://www.star-history.com/#li3112522-ops/mailfree&Date)
-
-## 联系方式
-
-- 微信：`iYear1213`
-
-## 赞赏支持
-
-如果你觉得本项目对你有帮助，欢迎赞赏支持：
-
-<p align="left">
-  <img src="pic/alipay.jpg" alt="支付宝赞赏码" height="400" />
-  <img src="pic/weichat.jpg" alt="微信赞赏码" height="400" />
-</p>
-
-## 许可证
-
-Apache-2.0 license
