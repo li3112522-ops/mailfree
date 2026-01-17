@@ -245,7 +245,3 @@ wrangler d1 execute TEMP_MAIL_DB --command "SELECT * FROM mailboxes LIMIT 10"
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=li3112522-ops/mailfree&type=Date)](https://www.star-history.com/#li3112522-ops/mailfree&Date)
-
-## 许可证
-
-Apache-2.0 license
