@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>API 管理 - iMail</title>
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
+  <!-- Design System -->
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
+  <link rel="stylesheet" href="/css/components/buttons.css" />
+  <link rel="stylesheet" href="/css/components/inputs.css" />
+  <link rel="stylesheet" href="/css/components/cards.css" />
+  <link rel="stylesheet" href="/css/components/modals.css" />
+  <link rel="stylesheet" href="/css/components/tabbar.css" />
+  <link rel="stylesheet" href="/css/app.css" />
+  <link rel="stylesheet" href="/css/api.css" />
+  <script src="/js/icons.js"></script>
+  <script src="/js/auth-guard.js" defer></script>
+</head>
+<body class="page-api has-tabbar">
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </div>
+        <span class="brand-text">iMail - API 管理</span>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-ghost btn-sm" href="/" title="返回首页">
+          <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
+            <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          </svg>
+          <span class="btn-text">首页</span>
+        </a>
+        <button id="logout" class="btn btn-secondary btn-sm" title="退出登录">
+          <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" x2="9" y1="12" y2="12"/>
+          </svg>
+          <span class="btn-text">退出登录</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container api-container">
+    <div class="main api-main">
+      <!-- API 概览卡片 -->
+      <div class="card card-gradient-purple">
+        <div class="card-header">
+          <h2 class="card-title">
+            <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+            </svg>
+            API 接口文档
+          </h2>
+        </div>
+        <p class="api-description">
+          iMail 提供 RESTful API 接口，支持邮箱管理、邮件收发等功能。所有接口需要通过身份验证。
+        </p>
+      </div>
+
+      <!-- 认证信息 -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/>
+              <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/>
+            </svg>
+            认证方式
+          </h3>
+        </div>
+        <div class="api-auth-section">
+          <div class="auth-method">
+            <h4>Cookie 认证</h4>
+            <p>登录后自动设置 <code>iding-session</code> Cookie，后续请求自动携带。</p>
+          </div>
+          <div class="auth-method">
+            <h4>Session API</h4>
+            <p>使用 <code>POST /api/login</code> 登录获取会话。</p>
+            <div class="code-block">
+              <pre><code>POST /api/login
+Content-Type: application/json
+
+{
+  "username": "your_username",
+  "password": "your_password"
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 邮箱管理 API -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+            邮箱管理
+          </h3>
+        </div>
+        <div class="api-endpoints">
+          <!-- 获取邮箱列表 -->
+          <div class="endpoint">
+            <div class="endpoint-header">
+              <span class="method get">GET</span>
+              <code class="endpoint-path">/api/mailboxes</code>
+            </div>
+            <p class="endpoint-desc">获取当前用户的邮箱列表</p>
+            <div class="endpoint-details">
+              <h5>查询参数</h5>
+              <table class="params-table">
+                <tr>
+                  <td><code>page</code></td>
+                  <td>页码（默认 1）</td>
+                </tr>
+                <tr>
+                  <td><code>limit</code></td>
+                  <td>每页数量（默认 20）</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <!-- 创建邮箱 -->
+          <div class="endpoint">
+            <div class="endpoint-header">
+              <span class="method post">POST</span>
+              <code class="endpoint-path">/api/mailbox</code>
+            </div>
+            <p class="endpoint-desc">创建新的临时邮箱</p>
+            <div class="code-block">
+              <pre><code>{
+  "local": "username",  // 可选，邮箱前缀
+  "domain": "example.com"  // 可选，邮箱域名
+}</code></pre>
+            </div>
+          </div>
+
+          <!-- 删除邮箱 -->
+          <div class="endpoint">
+            <div class="endpoint-header">
+              <span class="method delete">DELETE</span>
+              <code class="endpoint-path">/api/mailbox/:address</code>
+            </div>
+            <p class="endpoint-desc">删除指定邮箱</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 邮件管理 API -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/>
+              <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
+            </svg>
+            邮件管理
+          </h3>
+        </div>
+        <div class="api-endpoints">
+          <!-- 获取收件箱 -->
+          <div class="endpoint">
+            <div class="endpoint-header">
+              <span class="method get">GET</span>
+              <code class="endpoint-path">/api/inbox/:address</code>
+            </div>
+            <p class="endpoint-desc">获取指定邮箱的收件列表</p>
+            <div class="endpoint-details">
+              <h5>查询参数</h5>
+              <table class="params-table">
+                <tr>
+                  <td><code>page</code></td>
+                  <td>页码（默认 1）</td>
+                </tr>
+                <tr>
+                  <td><code>limit</code></td>
+                  <td>每页数量（默认 20）</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <!-- 获取邮件详情 -->
+          <div class="endpoint">
+            <div class="endpoint-header">
+              <span class="method get">GET</span>
+              <code class="endpoint-path">/api/email/:id</code>
+            </div>
+            <p class="endpoint-desc">获取邮件详情</p>
+          </div>
+
+          <!-- 发送邮件 -->
+          <div class="endpoint">
+            <div class="endpoint-header">
+              <span class="method post">POST</span>
+              <code class="endpoint-path">/api/send</code>
+            </div>
+            <p class="endpoint-desc">发送邮件</p>
+            <div class="code-block">
+              <pre><code>{
+  "from": "sender@example.com",
+  "to": ["recipient@example.com"],
+  "subject": "邮件主题",
+  "body": "邮件内容",
+  "fromName": "发件人名称"  // 可选
+}</code></pre>
+            </div>
+          </div>
+
+          <!-- 删除邮件 -->
+          <div class="endpoint">
+            <div class="endpoint-header">
+              <span class="method delete">DELETE</span>
+              <code class="endpoint-path">/api/email/:id</code>
+            </div>
+            <p class="endpoint-desc">删除指定邮件</p>
+          </div>
+
+          <!-- 清空邮箱 -->
+          <div class="endpoint">
+            <div class="endpoint-header">
+              <span class="method delete">DELETE</span>
+              <code class="endpoint-path">/api/inbox/:address</code>
+            </div>
+            <p class="endpoint-desc">清空指定邮箱的所有邮件</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 会话管理 API -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            会话管理
+          </h3>
+        </div>
+        <div class="api-endpoints">
+          <!-- 获取会话 -->
+          <div class="endpoint">
+            <div class="endpoint-header">
+              <span class="method get">GET</span>
+              <code class="endpoint-path">/api/session</code>
+            </div>
+            <p class="endpoint-desc">获取当前会话信息</p>
+          </div>
+
+          <!-- 登录 -->
+          <div class="endpoint">
+            <div class="endpoint-header">
+              <span class="method post">POST</span>
+              <code class="endpoint-path">/api/login</code>
+            </div>
+            <p class="endpoint-desc">用户登录</p>
+            <div class="code-block">
+              <pre><code>{
+  "username": "your_username",
+  "password": "your_password"
+}</code></pre>
+            </div>
+          </div>
+
+          <!-- 登出 -->
+          <div class="endpoint">
+            <div class="endpoint-header">
+              <span class="method post">POST</span>
+              <code class="endpoint-path">/api/logout</code>
+            </div>
+            <p class="endpoint-desc">退出登录</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 响应格式 -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 16v-4"/>
+              <path d="M12 8h.01"/>
+            </svg>
+            响应格式
+          </h3>
+        </div>
+        <div class="api-response-section">
+          <div class="response-example">
+            <h5>成功响应</h5>
+            <div class="code-block">
+              <pre><code>{
+  "success": true,
+  "data": { ... }
+}</code></pre>
+            </div>
+          </div>
+          <div class="response-example">
+            <h5>错误响应</h5>
+            <div class="code-block">
+              <pre><code>{
+  "success": false,
+  "error": "错误信息描述"
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-slot"></div>
+  <div id="toast" class="toast"></div>
+
+  <!-- Mobile Tab Bar -->
+  <nav class="tabbar" id="mobile-tabbar">
+    <div class="tabbar-items">
+      <a class="tabbar-item" href="/" title="邮箱">
+        <span class="tabbar-icon">
+          <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </span>
+        <span class="tabbar-label">邮箱</span>
+      </a>
+      <a class="tabbar-item" href="/#history" title="历史">
+        <span class="tabbar-icon">
+          <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+            <path d="M12 7v5l4 2"/>
+          </svg>
+        </span>
+        <span class="tabbar-label">历史</span>
+      </a>
+      <a class="tabbar-item active" href="/html/api.html" title="API">
+        <span class="tabbar-icon">
+          <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
+        </span>
+        <span class="tabbar-label">API</span>
+      </a>
+      <a class="tabbar-item" href="/#settings" title="设置">
+        <span class="tabbar-icon">
+          <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </span>
+        <span class="tabbar-label">设置</span>
+      </a>
+    </div>
+  </nav>
+
+  <script src="/js/toast-utils.js"></script>
+  <script src="/js/api.js"></script>
+  <script>
+    // 动态加载公共 footer 模板
+    (async function(){
+      try{
+        const res = await fetch('/templates/footer.html', { cache: 'no-cache' });
+        const html = await res.text();
+        const slot = document.getElementById('footer-slot');
+        if (slot){
+          slot.outerHTML = html;
+          setTimeout(()=>{ const y=document.getElementById('footer-year'); if (y) y.textContent=new Date().getFullYear(); },0);
+        }
+      }catch(_){ }
+    })();
+  </script>
+</body>
+</html>

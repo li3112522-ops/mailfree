@@ -1,0 +1,200 @@
+/**
+ * iMail Login Page - Apple HIG Style
+ */
+
+/* ========== Login Container ========== */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  position: relative;
+  z-index: 1;
+}
+
+/* ========== Login Card ========== */
+.login-card {
+  width: min(90vw, 420px);
+  padding: var(--space-10) var(--space-8);
+  text-align: center;
+  animation: scaleIn var(--duration-slow) var(--ease-spring);
+}
+
+.login-card::before {
+  opacity: 1;
+  background: linear-gradient(90deg, var(--apple-blue), var(--apple-teal), var(--apple-purple));
+}
+
+/* ========== Login Header ========== */
+.login-header {
+  margin-bottom: var(--space-8);
+}
+
+.login-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin-bottom: var(--space-4);
+  background: linear-gradient(135deg, var(--apple-blue), var(--apple-teal));
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-blue);
+  animation: float 3s ease-in-out infinite;
+}
+
+.login-logo .icon {
+  width: 40px;
+  height: 40px;
+  color: white;
+}
+
+.login-title {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  background: linear-gradient(135deg, var(--apple-blue), var(--apple-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 var(--space-2) 0;
+}
+
+.login-subtitle {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ========== Login Form ========== */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.login-form .form-group {
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.login-form .form-label {
+  margin-bottom: var(--space-2);
+}
+
+.login-form .input {
+  height: 52px;
+  font-size: var(--text-lg);
+}
+
+/* ========== Login Error ========== */
+.login-error {
+  display: none;
+  padding: var(--space-3) var(--space-4);
+  background: var(--apple-red-light);
+  border: 1px solid rgba(255, 59, 48, 0.2);
+  border-radius: var(--radius-md);
+  color: var(--apple-red);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  text-align: left;
+  animation: shake 0.4s ease-in-out;
+}
+
+.login-error:not(:empty) {
+  display: block;
+}
+
+/* Alias for legacy err class */
+.err {
+  display: none;
+  padding: var(--space-3) var(--space-4);
+  background: var(--apple-red-light);
+  border: 1px solid rgba(255, 59, 48, 0.2);
+  border-radius: var(--radius-md);
+  color: var(--apple-red);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  text-align: left;
+  animation: shake 0.4s ease-in-out;
+}
+
+.err:not(:empty) {
+  display: block;
+}
+
+/* ========== Login Hint ========== */
+.login-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--apple-blue-light);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  text-align: left;
+}
+
+.login-hint .icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--apple-blue);
+}
+
+.login-hint strong {
+  color: var(--apple-blue);
+  font-weight: var(--weight-semibold);
+}
+
+/* ========== Login Button ========== */
+.login-form .btn-primary {
+  margin-top: var(--space-4);
+  background: linear-gradient(135deg, var(--apple-blue), var(--apple-blue-hover));
+  box-shadow: var(--shadow-sm), var(--shadow-blue);
+}
+
+.login-form .btn-primary:hover {
+  background: linear-gradient(135deg, var(--apple-blue-hover), #0040A0);
+  box-shadow: var(--shadow-md), 0 12px 32px rgba(0, 122, 255, 0.35);
+  transform: translateY(-3px);
+}
+
+.login-form .btn-primary:active {
+  transform: translateY(-1px);
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .login-container {
+    padding: var(--space-4);
+  }
+
+  .login-card {
+    padding: var(--space-8) var(--space-5);
+  }
+
+  .login-logo {
+    width: 64px;
+    height: 64px;
+  }
+
+  .login-logo .icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .login-title {
+    font-size: var(--text-2xl);
+  }
+}
+
+/* ========== Animation Keyframes ========== */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}

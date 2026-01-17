@@ -1,0 +1,435 @@
+/**
+ * API 管理页面样式 - iMail
+ * Apple HIG 风格 + 毛玻璃效果
+ */
+
+/* 页面容器 */
+.api-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-6) var(--spacing-4);
+  padding-bottom: calc(var(--tabbar-height) + var(--spacing-8));
+}
+
+@media (min-width: 769px) {
+  .api-container {
+    padding-bottom: var(--spacing-8);
+  }
+}
+
+/* API 概览卡片 */
+.api-overview {
+  margin-bottom: var(--spacing-6);
+}
+
+.api-overview h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin: 0 0 var(--spacing-4) 0;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.api-overview p {
+  margin: 0 0 var(--spacing-3) 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.api-overview code {
+  background: var(--fill-tertiary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  color: var(--apple-blue);
+}
+
+/* API 端点区块 */
+.api-section {
+  margin-bottom: var(--spacing-6);
+}
+
+.api-section h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin: 0 0 var(--spacing-4) 0;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.api-section h3 .section-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--apple-blue);
+}
+
+/* 端点卡片 */
+.endpoint-card {
+  background: var(--card-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-3);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.endpoint-card:hover {
+  border-color: rgba(0, 122, 255, 0.3);
+  box-shadow: var(--shadow-md);
+}
+
+.endpoint-card:last-child {
+  margin-bottom: 0;
+}
+
+/* 端点头部 */
+.endpoint-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-3);
+  flex-wrap: wrap;
+}
+
+/* HTTP 方法标签 */
+.method-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.method-get {
+  background: rgba(52, 199, 89, 0.15);
+  color: var(--apple-green);
+}
+
+.method-post {
+  background: rgba(0, 122, 255, 0.15);
+  color: var(--apple-blue);
+}
+
+.method-put {
+  background: rgba(255, 149, 0, 0.15);
+  color: var(--apple-orange);
+}
+
+.method-delete {
+  background: rgba(255, 59, 48, 0.15);
+  color: var(--apple-red);
+}
+
+/* 端点路径 */
+.endpoint-path {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--fill-tertiary);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  flex: 1;
+  min-width: 200px;
+}
+
+/* 端点描述 */
+.endpoint-desc {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* 参数表格 */
+.params-table {
+  width: 100%;
+  margin-top: var(--spacing-3);
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.params-table th,
+.params-table td {
+  padding: var(--spacing-2) var(--spacing-3);
+  text-align: left;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.params-table th {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.params-table td {
+  color: var(--text-primary);
+}
+
+.params-table tr:last-child td {
+  border-bottom: none;
+}
+
+.param-name {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--apple-blue);
+}
+
+.param-type {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  background: var(--fill-tertiary);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.param-required {
+  font-size: var(--font-size-xs);
+  color: var(--apple-red);
+  font-weight: 500;
+}
+
+.param-optional {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+}
+
+/* 代码块 */
+.code-block {
+  background: rgba(30, 30, 30, 0.95);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-4);
+  margin-top: var(--spacing-3);
+  overflow-x: auto;
+}
+
+.code-block pre {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  color: #e0e0e0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.code-block .json-key {
+  color: #7ec8e3;
+}
+
+.code-block .json-string {
+  color: #98c379;
+}
+
+.code-block .json-number {
+  color: #d19a66;
+}
+
+.code-block .json-boolean {
+  color: #c678dd;
+}
+
+/* 响应格式区块 */
+.response-section {
+  margin-top: var(--spacing-6);
+}
+
+.response-section h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin: 0 0 var(--spacing-4) 0;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.response-example {
+  background: var(--card-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+.response-example h4 {
+  margin: 0 0 var(--spacing-2) 0;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.response-example + .response-example {
+  margin-top: var(--spacing-3);
+}
+
+/* 提示框 */
+.api-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  background: rgba(0, 122, 255, 0.08);
+  border: 1px solid rgba(0, 122, 255, 0.2);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-4);
+  margin-top: var(--spacing-4);
+}
+
+.api-note .note-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--apple-blue);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.api-note p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.api-note code {
+  background: rgba(0, 122, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: var(--apple-blue);
+}
+
+/* 警告框 */
+.api-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  background: rgba(255, 149, 0, 0.08);
+  border: 1px solid rgba(255, 149, 0, 0.2);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-4);
+  margin-top: var(--spacing-4);
+}
+
+.api-warning .warning-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--apple-orange);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.api-warning p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+/* 折叠区域 */
+.endpoint-details {
+  margin-top: var(--spacing-3);
+  padding-top: var(--spacing-3);
+  border-top: 1px solid var(--border-light);
+}
+
+.endpoint-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  background: none;
+  border: none;
+  padding: var(--spacing-2) 0;
+  font-size: var(--font-size-sm);
+  color: var(--apple-blue);
+  cursor: pointer;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.endpoint-toggle:hover {
+  opacity: 0.8;
+}
+
+.endpoint-toggle .toggle-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.endpoint-toggle.expanded .toggle-icon {
+  transform: rotate(90deg);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .api-container {
+    padding: var(--spacing-4) var(--spacing-3);
+  }
+
+  .endpoint-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-2);
+  }
+
+  .endpoint-path {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .params-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .code-block {
+    padding: var(--spacing-3);
+  }
+
+  .code-block pre {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  .endpoint-card {
+    background: rgba(44, 44, 46, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .endpoint-path {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .code-block {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .api-note {
+    background: rgba(0, 122, 255, 0.15);
+    border-color: rgba(0, 122, 255, 0.3);
+  }
+
+  .api-warning {
+    background: rgba(255, 149, 0, 0.15);
+    border-color: rgba(255, 149, 0, 0.3);
+  }
+}

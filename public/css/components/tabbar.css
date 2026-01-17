@@ -1,0 +1,313 @@
+/**
+ * iMail Design System - Tab Bar
+ * iOS Style Bottom Tab Bar for Mobile
+ */
+
+/* ========== Tab Bar Container ========== */
+.tabbar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed);
+  height: var(--tabbar-height);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  background: var(--glass-luxe-bg);
+  backdrop-filter: blur(var(--glass-luxe-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-luxe-blur)) saturate(var(--glass-saturate));
+  border-top: 1px solid var(--glass-luxe-border);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Show on mobile */
+@media (max-width: 768px) {
+  .tabbar {
+    display: flex;
+  }
+
+  /* Add padding to body to account for tabbar */
+  body.has-tabbar {
+    padding-bottom: var(--tabbar-height);
+  }
+}
+
+/* ========== Tab Bar Items Container ========== */
+.tabbar-items {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 var(--space-2);
+}
+
+/* ========== Tab Bar Item ========== */
+.tabbar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  flex: 1;
+  padding: var(--space-2);
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tabbar-item:hover {
+  color: var(--apple-blue);
+}
+
+.tabbar-item.active {
+  color: var(--apple-blue);
+}
+
+/* Active indicator */
+.tabbar-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 3px;
+  background: var(--apple-blue);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+}
+
+/* Tap feedback */
+.tabbar-item:active {
+  transform: scale(0.95);
+}
+
+/* ========== Tab Bar Icon ========== */
+.tabbar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  transition: var(--transition-fast);
+}
+
+.tabbar-icon .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.tabbar-item.active .tabbar-icon {
+  transform: scale(1.1);
+}
+
+/* ========== Tab Bar Label ========== */
+.tabbar-label {
+  font-size: 10px;
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.tabbar-item.active .tabbar-label {
+  font-weight: var(--weight-semibold);
+}
+
+/* ========== Tab Bar Badge ========== */
+.tabbar-badge {
+  position: absolute;
+  top: 4px;
+  right: calc(50% - 20px);
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  background: var(--apple-red);
+  color: white;
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+  line-height: 18px;
+  text-align: center;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 8px rgba(255, 59, 48, 0.4);
+  animation: badgePop var(--duration-fast) var(--ease-spring);
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Hide badge when empty */
+.tabbar-badge:empty {
+  display: none;
+}
+
+/* ========== Tab Bar Variants ========== */
+
+/* Admin Tab Bar (5 items) */
+.tabbar-admin .tabbar-item {
+  flex: 1;
+}
+
+.tabbar-admin .tabbar-label {
+  font-size: 9px;
+}
+
+/* Compact Tab Bar */
+.tabbar-compact {
+  height: 64px;
+}
+
+.tabbar-compact .tabbar-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.tabbar-compact .tabbar-icon .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.tabbar-compact .tabbar-label {
+  font-size: 9px;
+}
+
+/* ========== Tab Bar with Safe Area ========== */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .tabbar {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  body.has-tabbar {
+    padding-bottom: calc(var(--tabbar-height) + env(safe-area-inset-bottom));
+  }
+}
+
+/* ========== Tab Bar Animations ========== */
+.tabbar-item .tabbar-icon {
+  transition: transform var(--duration-fast) var(--ease-spring);
+}
+
+.tabbar-item:active .tabbar-icon {
+  transform: scale(0.9);
+}
+
+/* Ripple effect */
+.tabbar-item::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: var(--apple-blue-light);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width var(--duration-normal), height var(--duration-normal), opacity var(--duration-normal);
+  opacity: 0;
+}
+
+.tabbar-item:active::after {
+  width: 60px;
+  height: 60px;
+  opacity: 0.5;
+}
+
+/* ========== Desktop Tab Bar (Horizontal Navigation) ========== */
+@media (min-width: 769px) {
+  .tabbar-desktop {
+    display: flex;
+    position: static;
+    height: auto;
+    padding: 0;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .tabbar-desktop .tabbar-items {
+    justify-content: flex-start;
+    gap: var(--space-2);
+    max-width: none;
+    padding: 0;
+  }
+
+  .tabbar-desktop .tabbar-item {
+    flex: none;
+    flex-direction: row;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-pill);
+    background: var(--surface-secondary);
+  }
+
+  .tabbar-desktop .tabbar-item:hover {
+    background: var(--apple-blue-light);
+  }
+
+  .tabbar-desktop .tabbar-item.active {
+    background: var(--apple-blue);
+    color: white;
+  }
+
+  .tabbar-desktop .tabbar-item.active::before {
+    display: none;
+  }
+
+  .tabbar-desktop .tabbar-label {
+    font-size: var(--text-sm);
+  }
+
+  .tabbar-desktop .tabbar-badge {
+    position: static;
+    margin-left: var(--space-2);
+  }
+}
+
+/* ========== Hide Tabbar on Desktop ========== */
+@media (min-width: 769px) {
+  .tabbar:not(.tabbar-desktop) {
+    display: none;
+  }
+}
+
+/* ========== Landscape Mode Adjustments ========== */
+@media (max-width: 900px) and (orientation: landscape) {
+  .tabbar {
+    height: 56px;
+  }
+
+  .tabbar-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .tabbar-icon .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .tabbar-label {
+    font-size: 9px;
+  }
+
+  body.has-tabbar {
+    padding-bottom: 56px;
+  }
+}

@@ -1,0 +1,382 @@
+/**
+ * iMail Design System - Cards
+ * Apple HIG Inspired Frosted Glass Cards
+ */
+
+/* ========== Base Card ========== */
+.card {
+  position: relative;
+  background: var(--glass-luxe-bg);
+  backdrop-filter: blur(var(--glass-luxe-blur)) saturate(var(--glass-saturate));
+  -webkit-backdrop-filter: blur(var(--glass-luxe-blur)) saturate(var(--glass-saturate));
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--glass-luxe-border);
+  box-shadow: var(--shadow-glass);
+  padding: var(--space-6);
+  overflow: hidden;
+  transition: var(--transition-normal);
+}
+
+/* Gradient top border */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--apple-blue), var(--apple-purple), var(--apple-pink));
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ========== Card Header ========== */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.card-title .icon {
+  width: 24px;
+  height: 24px;
+  color: var(--apple-blue);
+}
+
+.card-subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-top: var(--space-1);
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ========== Card Body ========== */
+.card-body {
+  flex: 1;
+}
+
+/* ========== Card Footer ========== */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-secondary);
+}
+
+/* ========== Card Variants ========== */
+
+/* Primary Card */
+.card-primary::before {
+  opacity: 1;
+  background: linear-gradient(90deg, var(--apple-blue), var(--apple-teal));
+}
+
+/* Success Card */
+.card-success::before {
+  opacity: 1;
+  background: linear-gradient(90deg, var(--apple-green), var(--apple-teal));
+}
+
+/* Warning Card */
+.card-warning::before {
+  opacity: 1;
+  background: linear-gradient(90deg, var(--apple-orange), var(--apple-yellow));
+}
+
+/* Danger Card */
+.card-danger::before {
+  opacity: 1;
+  background: linear-gradient(90deg, var(--apple-red), var(--apple-orange));
+}
+
+/* ========== Card with Background Gradient ========== */
+.card-gradient-blue {
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.05), rgba(90, 200, 250, 0.05)), var(--glass-luxe-bg);
+}
+
+.card-gradient-green {
+  background: linear-gradient(135deg, rgba(52, 199, 89, 0.05), rgba(90, 200, 250, 0.05)), var(--glass-luxe-bg);
+}
+
+.card-gradient-purple {
+  background: linear-gradient(135deg, rgba(175, 82, 222, 0.05), rgba(255, 45, 85, 0.05)), var(--glass-luxe-bg);
+}
+
+/* ========== Compact Card ========== */
+.card-compact {
+  padding: var(--space-4);
+  border-radius: var(--radius-xl);
+}
+
+.card-compact .card-header {
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-3);
+}
+
+.card-compact .card-title {
+  font-size: var(--text-lg);
+}
+
+/* ========== Card No Hover ========== */
+.card-static {
+  transition: none;
+}
+
+.card-static:hover {
+  transform: none;
+  box-shadow: var(--shadow-glass);
+}
+
+.card-static::before {
+  opacity: 0 !important;
+}
+
+/* ========== Interactive Card (Clickable) ========== */
+.card-interactive {
+  cursor: pointer;
+}
+
+.card-interactive:active {
+  transform: scale(0.98);
+}
+
+/* ========== Card List Item ========== */
+.card-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--surface-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+.card-list-item:hover {
+  background: var(--surface-primary);
+  border-color: var(--apple-blue);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-list-item.active {
+  background: var(--apple-blue-light);
+  border-color: var(--apple-blue);
+}
+
+.card-list-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--surface-primary);
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.card-list-item-icon .icon {
+  width: 20px;
+  height: 20px;
+  color: var(--apple-blue);
+}
+
+.card-list-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-list-item-title {
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-list-item-subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  margin-top: var(--space-1);
+}
+
+.card-list-item-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  opacity: 0;
+  transition: var(--transition-fast);
+}
+
+.card-list-item:hover .card-list-item-actions {
+  opacity: 1;
+}
+
+/* ========== Email Card ========== */
+.email-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--surface-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  border-left: 4px solid transparent;
+  transition: var(--transition-fast);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.email-card:hover {
+  background: var(--surface-primary);
+  border-color: var(--apple-blue);
+  border-left-color: var(--apple-blue);
+  box-shadow: var(--shadow-md);
+}
+
+.email-card.unread {
+  background: var(--surface-primary);
+  border-left-color: var(--apple-blue);
+}
+
+.email-card.unread .email-card-subject {
+  font-weight: var(--weight-bold);
+}
+
+.email-card-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.email-card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+}
+
+.email-card-sender {
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+.email-card-time {
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.email-card-subject {
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.email-card-preview {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.email-card-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  opacity: 0;
+  transition: var(--transition-fast);
+}
+
+.email-card:hover .email-card-actions {
+  opacity: 1;
+}
+
+/* ========== Empty State Card ========== */
+.card-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12);
+  text-align: center;
+}
+
+.card-empty-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: var(--space-4);
+  color: var(--text-quaternary);
+}
+
+.card-empty-title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.card-empty-description {
+  font-size: var(--text-base);
+  color: var(--text-tertiary);
+  max-width: 300px;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .card {
+    padding: var(--space-4);
+    border-radius: var(--radius-xl);
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .card-list-item-actions {
+    opacity: 1;
+  }
+
+  .email-card-actions {
+    opacity: 1;
+  }
+}
