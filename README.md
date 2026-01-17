@@ -18,38 +18,9 @@
 
 ## 一键部署
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/li3112522-ops/freemail)
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/li3112522-ops/mailfree)
 
 ### [点击查看一键部署指南](docs/yijianbushu.md)
-
-## 项目展示
-
-### 体验地址： https://mailexhibit.dinging.top/
-
-- **体验账号：** guest
-- **体验密码：** admin
-
-### 页面展示
-
-#### 登录
-![登录页面](pic/dlu.png)
-
-#### 首页
-![首页展示](pic/shouye.png)
-
-### 手机端展示
-<div style="display: flex; gap: 20px; justify-content: center; margin: 20px 0;">
-  <img src="./pic/phone/shouye.png" alt="手机端生成邮箱" style="height: 400px;" />
-  <img src="./pic/phone/lishi.png" alt="手机端历史邮箱" style="height: 400px;" />
-</div>
-
-### 邮箱管理
-![邮箱管理](./pic/v4/youxiang.png)
-![全部邮箱](./pic/v4/xiugaiquanju.png)
-
-#### [更多展示点击查看](docs/zhanshi.md)
-
----
 
 ## 功能特性
 
@@ -143,7 +114,7 @@ public/
 
 ## 部署步骤
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/li3112522-ops/freemail)
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/li3112522-ops/mailfree)
 
 ### [一键部署指南](docs/yijianbushu.md)
 
@@ -273,20 +244,7 @@ wrangler d1 execute TEMP_MAIL_DB --command "SELECT * FROM mailboxes LIMIT 10"
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=li3112522-ops/freemail&type=Date)](https://www.star-history.com/#li3112522-ops/freemail&Date)
-
-## 联系方式
-
-- 微信：`iYear1213`
-
-## 赞赏支持
-
-如果你觉得本项目对你有帮助，欢迎赞赏支持：
-
-<p align="left">
-  <img src="pic/alipay.jpg" alt="支付宝赞赏码" height="400" />
-  <img src="pic/weichat.jpg" alt="微信赞赏码" height="400" />
-</p>
+[![Star History Chart](https://api.star-history.com/svg?repos=li3112522-ops/mailfree&type=Date)](https://www.star-history.com/#li3112522-ops/mailfree&Date)
 
 ## 许可证
 
